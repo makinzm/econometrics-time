@@ -1,0 +1,50 @@
+---
+title: "Answer"
+author: "Nozomi Maki"
+date: '2023-04-28'
+output: pdf_document
+---
+
+## 1st Chapter Problem
+
+### 1.1.
+
+\[
+\begin{aligned} 
+\gamma_{-k} :=&{\rm Cov}(y_t,y_{t-(-k)})\\ =&{\rm Cov}(y_t,y_{t+k})\\ =&{\rm Cov}(y_{t+k},y_{t})\\ =&{\rm Cov}(y_{(t+k)},y_{(t+k)-k})=\gamma_k. \square 
+\end{aligned}   
+\]
+
+### 1.2.
+$$
+\begin{aligned}
+E(y_t)&=\mu+E(\epsilon)=\mu . \\
+{\rm Cov}(y_t,y_{t-k})&= E(\epsilon_t \epsilon_{t-k})=\gamma_k. \\
+&\gamma_k=0,\forall k \in \mathbb{N}. &\square
+\end{aligned}
+$$
+
+### 1.3.
+
+```{r}
+set.seed(42)
+
+par(mfrow=c(2,3))
+
+n <- 100
+mu <- c(0, 1, -1, 2, -2, 0.5)
+sigma <- c(1, 2, 0.5, 1.5, 0.8, 1)
+
+for (i in 1:6) {
+  eps <- rnorm(n, mean=mu[i], sd=sigma[i])
+  time_axis <- 1:n
+  plot(
+    time_axis, eps, 
+    main=bquote(mu == .(mu[i]) ~ "," ~ sigma == .(sigma[i])), 
+    type="l", xlab = "", ylab = "")
+}
+```
+
+### 1.4.
+
+At first, I think the answer is Auto-regressive Process. However, this process have the same expectation which doesn't depend on time.
